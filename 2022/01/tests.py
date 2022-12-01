@@ -53,10 +53,19 @@ class ListParserTest(unittest.TestCase):
 
 class AppTest(unittest.TestCase):
 
-    def test_end_to_end_with_test_input(self):
+    def test_end_to_end_with_test_input_single_item(self):
     
         app = App()
 
         max_calories = app.find_max_from_list("test-input.txt")
 
         self.assertEqual(24000, max_calories)
+
+    def test_end_to_end_with_test_input_sum_n_items(self):
+    
+        app = App()
+
+        max_calories = app.find_max_from_list("test-input.txt", 3)
+
+        self.assertEqual(45000, max_calories)
+
