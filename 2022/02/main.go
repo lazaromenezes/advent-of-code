@@ -20,7 +20,9 @@ func main() {
 
 	for fileScanner.Scan() {
 		var shapes_played = strings.Split(fileScanner.Text(), " ")
-		tournament.Plays = append(tournament.Plays, Play{shapes_played[0], shapes_played[1]})
+		var play = Play{Opponent: shapes_played[0], Tip: shapes_played[1]}
+		play.Adjust()
+		tournament.Plays = append(tournament.Plays, play)
 	}
 	
 	fmt.Println(tournament.CalculatePlayerPoints())
@@ -31,6 +33,7 @@ func main() {
 type Play struct{
 	Opponent string
 	Yours string
+	Tip string
 }
 
 type Tournament struct {
@@ -41,12 +44,10 @@ type shapeValue map[string]int
 
 var shape_values = shapeValue{
 	"A" : 1,
-	"X" : 1,
 	"B" : 2,
-	"Y" : 2,
 	"C" : 3,
-	"Z" : 3,
 }
+
 
 func (play Play) CalculatePlayPoints() int {
 	var play_result = shape_values[play.Yours] - shape_values[play.Opponent]
@@ -66,6 +67,30 @@ func (play Play) CalculateShapePoints() int {
 
 func (play Play) CalculateTotalOutcome() int {
 	return play.CalculatePlayPoints() + play.CalculateShapePoints() 
+}
+
+func (play *Play) Adjust() {
+	if play.Tip == "X" {
+		switch play.Opponent {
+		case "A": 
+			play.Yours = "C"
+		case "B":
+			play.Yours = "A"
+		case "C":
+			play.Yours = "B"
+		}
+	}else if play.Tip == "Z" {
+		switch play.Opponent {
+		case "A": 
+			play.Yours = "B"
+		case "B":
+			play.Yours = "C"
+		case "C":
+			play.Yours = "A"
+		}
+	}else {
+		play.Yours = play.Opponent
+	}
 }
 
 func (tournament Tournament) CalculatePlayerPoints() int {
