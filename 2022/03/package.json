@@ -1,0 +1,29 @@
+{
+  "name": "aoc-2022-03",
+  "version": "1.0.0",
+  "description": "Advent of Code 3rd challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lazaromenezes/advent-of-code.git#main"
+  },
+  "keywords": [
+    "advent",
+    "of",
+    "code",
+    "2022",
+    "xmas"
+  ],
+  "author": "Lazaro Menezes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lazaromenezes/advent-of-code/issues"
+  },
+  "homepage": "https://github.com/lazaromenezes/advent-of-code/tree/main#readme",
+  "dependencies": {
+    "jest": "^29.3.1"
+  }
+}
