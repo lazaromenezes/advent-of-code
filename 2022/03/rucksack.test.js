@@ -17,6 +17,13 @@ testRucksack.forEach((rs) => {
   })
 })
 
+test('Can find repeated in group', () => {
+  let group = [testRucksack[0][0], testRucksack[1][0], testRucksack[2][0]]
+
+  let repeatedItem = rucksack.findRepeatedInGroup(group)
+
+  expect(repeatedItem).toEqual('r')
+})
 
 const testPriorities = [
   ['p', 16],

@@ -19,9 +19,28 @@ function calculatePriority(item) {
 
   if(charCode > CAPITAL_Z_CODE)
     return charCode - LOWER_A_CODE + 1  
-  else
-    return charCode - CAPITAL_A_CODE + ALPHABET_SIZE + 1
 
+  return charCode - CAPITAL_A_CODE + ALPHABET_SIZE + 1
 }
 
-module.exports = {findRepeated, calculatePriority}
+function findRepeatedInGroup(groups) {
+  
+  let nGroups = groups.length
+
+  for(let i in groups[0]){
+    let inAll = true
+    let j = 1
+    let item = groups[0][i]
+
+    do {
+      inAll = inAll && groups[j].includes(item)
+    }while(inAll && ++j < nGroups)
+
+    if(inAll)
+      return item
+  }
+
+  return null
+}
+
+module.exports = {findRepeated, findRepeatedInGroup, calculatePriority}
