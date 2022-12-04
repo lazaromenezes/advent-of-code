@@ -1,0 +1,6 @@
+[package]
+name = "assignments" # the name of the package
+version = "0.1.0"    # the current version, obeying semver
+authors = ["Lazaro Menezes <lazarodm@gmail.com>"]
+edition = "2021"
+
