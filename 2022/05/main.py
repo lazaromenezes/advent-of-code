@@ -46,7 +46,12 @@ class Crane():
         for i in range(move["amount"]):
             stacks[move["to"]].append(stacks[move["source"]].pop())
 
-def find_result_for(path):
+    def move_many(self, stacks, move):
+        to_move = stacks[move["source"]][-move["amount"]:]
+        stacks[move["to"]].extend(to_move)
+        del stacks[move["source"]][-move["amount"]:]
+
+def find_result_for_9000(path):
     
     parser = Parser()
     crane = Crane()
@@ -64,6 +69,25 @@ def find_result_for(path):
 
         return result
 
+def find_result_for_9001(path):
+    
+    parser = Parser()
+    crane = Crane()
+
+    with open(path, 'r') as text:
+        split = parser.split(text.read())
+        
+        crates = parser.parse_crate(split[0])
+        moves = parser.parse_moves(split[1])
+
+        for move in moves:
+            crane.move_many(crates, move)
+
+        result = ''.join([crates[c].pop() for c in crates])
+
+        return result
+
 if __name__ == '__main__':
 
-    print(find_result_for('./final-input.txt'))
+    print(find_result_for_9000('./final-input.txt'))
+    print(find_result_for_9001('./final-input.txt'))

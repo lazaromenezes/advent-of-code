@@ -73,7 +73,7 @@ class TestCrane(unittest.TestCase):
         self.assertEqual(["Z"], stacks["1"])
         self.assertEqual(["P", "N"], stacks["3"])
 
-    def test_crane_can_move_n_crates_between_stacks(self):
+    def test_crane_can_move_n_crates_between_stacks_individually(self):
         stacks = {
                 "1": ["Z", "N"],
                 "2": ["M", "C", "D"],
@@ -89,10 +89,30 @@ class TestCrane(unittest.TestCase):
         self.assertEqual([], stacks["2"])
         self.assertEqual(["P", "D", "C", "M"], stacks["3"])
 
+    def test_crane_can_move_n_crates_between_stacks_at_once(self):
+        stacks = {
+                "1": ["Z", "N"],
+                "2": ["M", "C", "D"],
+                "3": ["P"]
+        }
+
+        move = {"amount": 3, "source": "2", "to": "3"}
+
+        crane = main.Crane()
+
+        crane.move_many(stacks, move)
+
+        self.assertEqual([], stacks["2"])
+        self.assertEqual(["P", "M", "C", "D"], stacks["3"])
+
 class TestEndToEnd(unittest.TestCase):
 
-    def test_end_to_end(self):
+    def test_end_to_end_9000(self):
         
-        result = main.find_result_for('./test-input.txt')
+        result = main.find_result_for_9000('./test-input.txt')
         self.assertEqual('CMZ', result)
 
+    def test_end_to_end_9001(self):
+        
+        result = main.find_result_for_9001('./test-input.txt')
+        self.assertEqual('MCD', result)
