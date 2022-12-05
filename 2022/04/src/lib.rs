@@ -34,6 +34,11 @@ impl Assignment {
         return self_range
             .any(|s| other_range.contains(&s));
     }
+
+    pub fn overlaps_alternate(&self, other: &Assignment) -> bool {
+        return self.first_section <= other.last_section && 
+            other.first_section <= self.last_section;
+    }
 }
 
 pub struct AssignmentPair {
@@ -213,6 +218,38 @@ mod tests {
 
         assert!(!assignment.overlaps(&other_assignment));
         assert!(!other_assignment.overlaps(&assignment));
+    }
+
+    #[test]
+    fn assignment_overlaps_another_alternate_method() {
+        let assignment = Assignment {
+            first_section: 5,
+            last_section: 7,
+        };
+
+        let other_assignment = Assignment {
+            first_section: 7,
+            last_section: 9
+        };
+
+        assert!(assignment.overlaps_alternate(&other_assignment));
+        assert!(other_assignment.overlaps_alternate(&assignment));
+    }
+
+    #[test]
+    fn assignment_does_not_overlap_another_alternate_method() {
+        let assignment = Assignment {
+            first_section: 2,
+            last_section: 4,
+        };
+
+        let other_assignment = Assignment {
+            first_section: 6,
+            last_section: 8
+        };
+
+        assert!(!assignment.overlaps_alternate(&other_assignment));
+        assert!(!other_assignment.overlaps_alternate(&assignment));
     }
 
     #[test]
