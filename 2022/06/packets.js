@@ -1,6 +1,4 @@
-const findSignalEnd = (packet) => {
-  const signalSize = 4
-
+const findSignalEnd = (packet, signalSize = 4) => {
   for(let i = 0; i < packet.length - signalSize; i++){
 
     let signal = packet.slice(i, i + signalSize)
