@@ -1,5 +1,5 @@
-Day 3: Rucksack Reorganization
+Day 6: Tuning Trouble
 
-O enunciado do desafio está [aqui](https://adventofcode.com/2022/day/3).
+O enunciado do desafio está [aqui](https://adventofcode.com/2022/day/6).
 
 Solução em Javascript.

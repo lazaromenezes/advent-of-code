@@ -11,5 +11,6 @@ O [Advent of Code](https://adventofcode.com/2022/about) é um desafio anual de p
 2. [Day 2: Rock Paper Scissors](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/02) - Go
 3. [Day 3: Rucksack Reorganization](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/03) - Javascript
 4. [Day 4: Camp Cleanup](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/04) - Rust
-
+5. [Day 5: Supply Stacks](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/05) - Python
+6. [Day 6: Tuning Trouble](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/06) - Javascript
 
