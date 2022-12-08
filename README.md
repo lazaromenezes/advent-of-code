@@ -13,4 +13,5 @@ O [Advent of Code](https://adventofcode.com/2022/about) é um desafio anual de p
 4. [Day 4: Camp Cleanup](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/04) - Rust
 5. [Day 5: Supply Stacks](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/05) - Python
 6. [Day 6: Tuning Trouble](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/06) - Javascript
-
+7. [Day 7: No Space Left On Device](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/07) - Ruby [in progress]
+8. [Day 8: Treetop Tree House](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/08) - Python
