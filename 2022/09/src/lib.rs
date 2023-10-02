@@ -14,6 +14,27 @@ fn are_adjacent(head: Point, tail: Point) -> bool {
     return distance(head, tail) <= 2f64.sqrt();
 }
 
+fn calculate_knot_move(head: Point, tail: Point, front_move: Point) -> Point{
+    if are_adjacent(head, tail) {
+        return (0, 0);
+    }
+
+    let (hx, hy) = head;
+    let (tx, ty) = tail;
+    
+    let dx = hx - tx;
+    let dy = hy - ty;
+
+    if dx == 0 || dy == 0 {
+        return front_move;
+    }else {
+        let x_move = dx / dx.abs();
+        let y_move = dy / dy.abs();
+
+        return (x_move, y_move);
+    }
+}
+
 fn move_tail(head: Point, tail: Point, m: Point) -> Point {
     if are_adjacent(head, tail) {
         return tail;
@@ -77,11 +98,58 @@ pub mod app {
         return tail_positions.iter().collect::<HashSet<&Point>>().len();
     }
 
+    pub fn count_nth_tail_positions_from_file(path: &str, ntails: usize) -> usize {
+        let starting_position = (0,0);
+        let mut head = starting_position;
+        let mut tails: Vec::<Point> = vec![starting_position;ntails];
+ 
+        let mut nth_tail_positions: Vec::<Point> = vec![starting_position];
+
+        fs::read_to_string(path)
+            .unwrap()
+            .trim()
+            .split('\n')
+            .map(|m| parse_move(m))
+            .flatten()
+            .for_each(|m| {
+                head = move_head(head, m);
+                let mut knot_move = m;
+                for t in 0..ntails {
+                    if t == 0 {
+                        knot_move = calculate_knot_move(head, tails[t], m);
+                    } else {
+                        knot_move = calculate_knot_move(tails[t - 1], tails[t], knot_move);
+                    };
+
+                    tails[t] = move_knot(tails[t], knot_move);
+
+                    if t == (ntails - 1) {
+                        nth_tail_positions.push(tails[t]);
+                    };
+                }
+            });
+
+        let result = nth_tail_positions
+            .iter()
+            .collect::<HashSet<&Point>>();
+
+        println!("{:?}", result);
+
+        return result.len();
+    }
+
     fn move_head(head: Point, m: Point) -> Point {
         let (mx, my) = m;
         let (hx, hy) = head;
 
         return (hx + mx, hy + my);
+    }
+
+    fn move_knot(knot: Point, m: Point) -> Point {
+        let (mx, my) = m;
+        let (kx, ky) = knot;
+
+        return (kx + mx, ky + my);
     }
 }
 
@@ -127,18 +195,6 @@ mod tests {
         let tail = (3, 0);
 
         assert!(!are_adjacent(head, tail));
-    }
-
-    macro_rules! move_tail_tests{
-        ($($name:ident: $value:expr,)*) => {
-            $(
-                #[test]
-                fn $name() {
-                    let (head, tail, movement, expected) = $value;
-                    assert_eq!(expected, move_tail(head, tail, movement));
-                }
-            )*
-        }
     }
 
     macro_rules! parse_move_tests {
