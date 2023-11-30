@@ -9,16 +9,5 @@ find_package(GTest REQUIRED)
 
 enable_testing()
 
-add_executable(
-    counter_tests
-    22.1/counter.test.cpp
-)
-
-target_link_libraries(
-    counter_tests
-    GTest::gtest_main
-)
-
-include(GoogleTest)
-
-gtest_discover_tests(counter_tests)
+add_subdirectory(22.1)
+add_subdirectory(01)

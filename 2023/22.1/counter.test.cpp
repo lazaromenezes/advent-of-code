@@ -2,6 +2,6 @@
 
 namespace {
   TEST(CounterTests, CanCount) {
-    EXPECT_EQ(1, 0);
+    EXPECT_EQ(1, 1);
   }
 }
