@@ -9,8 +9,6 @@ using ::std::string;
 using ::std::vector;
 using ::aoc2023_01::number_finder;
 
-using ::testing::Eq;
-
 namespace aoc2023_01_tests {
   TEST(AOC_2023_01_NUMBER_FINDER, can_extract_number_from_row) {
     

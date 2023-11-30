@@ -1,4 +1,5 @@
 #include "number-finder.h"
+#include "replacer.h"
 #include <regex>
 #include <iterator>
 #include <vector>
