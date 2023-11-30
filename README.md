@@ -1,7 +1,9 @@
 # advent-of-code
 Advent of code challenges
 
-O [Advent of Code](https://adventofcode.com/2022/about) é um desafio anual de programação, inspirado no [Calendário do Advento](https://pt.wikipedia.org/wiki/Calend%C3%A1rio_do_Advento), e dentro de cada 'janela' um novo desafio de programção é liberado e os participantes ganham pontos ao informar a resposta correta para cada desafio.
+[...]
+[Advent of Code](https://adventofcode.com/2022/about) is an [Advent calendar](https://en.wikipedia.org/wiki/Advent_calendar) of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
+[...]
 
 ## Languages
 
@@ -15,3 +17,11 @@ O [Advent of Code](https://adventofcode.com/2022/about) é um desafio anual de p
 6. [Day 6: Tuning Trouble](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/06) - Javascript
 7. [Day 7: No Space Left On Device](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/07) - Ruby [in progress]
 8. [Day 8: Treetop Tree House](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/08) - Python
+9. [Day 9: Rope Bridge](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/09) - Rust [first puzzle only]
+10. [Day 10: Cathode-Ray Tube](https://github.com/lazaromenezes/advent-of-code/tree/main/2022/10) - Python
+
+### 2023
+
+I'll be using C++ for all challenges this year
+
+1. [Day 1: Trebuchet?!](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/01)
