@@ -1,9 +1,10 @@
 find_package(GTest REQUIRED)
 
-add_executable(new_test new_test.cpp)
+add_library(number-finder number-finder.cpp)
+add_executable(number-finder-tests number-finder-tests.cpp)
 
-target_link_libraries(new_test GTest::gtest_main)
+target_link_libraries(number-finder-tests number-finder GTest::gtest_main)
 
 include(GoogleTest)
 
-gtest_discover_tests(new_test)
+gtest_discover_tests(number-finder-tests)
