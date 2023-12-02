@@ -26,6 +26,10 @@ namespace aoc2023_02{
             && draw.blue <= blue;
     }
 
+    int Bag::power(){
+        return red * green * blue;
+    }
+
     Game Game::fromString(string gameString){
         int id;
 
@@ -63,5 +67,21 @@ namespace aoc2023_02{
                 return false;
 
         return true;
+    }
+
+    int Game::minRequiredPower(){
+        Bag minRequiredBag {};
+
+        auto swap = [](int b, int d) {
+            return d > b ? d : b;
+        };
+
+        for(Draw draw: draws){
+            minRequiredBag.red = swap(minRequiredBag.red, draw.red);
+            minRequiredBag.green = swap(minRequiredBag.green, draw.green);
+            minRequiredBag.blue = swap(minRequiredBag.blue, draw.blue);
+        }
+
+        return minRequiredBag.power();
     }
 }

@@ -23,6 +23,7 @@ namespace aoc2023_02{
         int red, green, blue;
 
         bool canDraw(Draw draw);
+        int power();
     };
 
     struct Game{
@@ -30,6 +31,7 @@ namespace aoc2023_02{
         vector<Draw> draws;
 
         bool isValid(Bag bag);
+        int minRequiredPower();
 
         static Game fromString(string gameString);
 

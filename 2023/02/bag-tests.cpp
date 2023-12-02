@@ -65,4 +65,14 @@ namespace aoc2023_02_tests {
 
         EXPECT_FALSE(bag.canDraw(draw));
     }
+
+    TEST(BAG, test_power_is_cube_amounts_multiplied){
+        const int RED = 20;
+        const int GREEN = 13;
+        const int BLUE = 6;
+
+        Bag bag = Bag{RED, GREEN, BLUE};
+
+        EXPECT_EQ(1560, bag.power());
+    }
 }

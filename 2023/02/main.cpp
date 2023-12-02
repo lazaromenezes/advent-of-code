@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
     Bag bag{.red = 12, .green = 13, .blue = 14};
 
     int total = 0;
+    int requiredPower = 0;
 
     string line;
 
@@ -26,9 +27,11 @@ int main(int argc, char *argv[]) {
         Game game = Game::fromString(line);
         
         total += game.isValid(bag) ? game.id : 0;
+        requiredPower += game.minRequiredPower();
     };
 
     inputFile.close();
 
     cout << "Total: " << total << "\n";
+    cout << "Required Power: " << requiredPower << "\n";
 }

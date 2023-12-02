@@ -65,4 +65,12 @@ namespace aoc2023_02_tests {
 
         EXPECT_FALSE(game.isValid(bag));
     }
+
+    TEST(GAME, min_required_power_is_the_power_of_the_min_amount_for_each_picked_color){
+        string gameString = "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue";
+
+        Game game = Game::fromString(gameString);
+
+        EXPECT_EQ(12, game.minRequiredPower());
+    }
 }
