@@ -10,7 +10,7 @@ using ::std::vector;
 using ::aoc2023_01::number_finder;
 
 namespace aoc2023_01_tests {
-  TEST(AOC_2023_01_NUMBER_FINDER, can_extract_number_from_row) {
+  TEST(NUMBER_FINDER, can_extract_number_from_row) {
     
     number_finder finder = number_finder();
 
@@ -21,7 +21,7 @@ namespace aoc2023_01_tests {
     ASSERT_EQ(found_number, 12);
   }
 
-  TEST(AOC_2023_01_NUMBER_FINDER, can_extract_number_from_mid_row) {
+  TEST(NUMBER_FINDER, can_extract_number_from_mid_row) {
     
     number_finder finder = number_finder();
 
@@ -32,7 +32,7 @@ namespace aoc2023_01_tests {
     ASSERT_EQ(found_number, 38);
   }
 
-  TEST(AOC_2023_01_NUMBER_FINDER, can_extract_number_from_mid_row_even_with_additional_numbers) {
+  TEST(NUMBER_FINDER, can_extract_number_from_mid_row_even_with_additional_numbers) {
     
     number_finder finder = number_finder();
 
@@ -43,7 +43,7 @@ namespace aoc2023_01_tests {
     ASSERT_EQ(found_number, 15);
   }
 
-  TEST(AOC_2023_01_NUMBER_FINDER, can_extract_number_from_row_with_single_number) {       
+  TEST(NUMBER_FINDER, can_extract_number_from_row_with_single_number) {       
     number_finder finder = number_finder();
 
     string input = "treb7uchet";

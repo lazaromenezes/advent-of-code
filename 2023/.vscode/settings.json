@@ -1,3 +1,6 @@
 {
-    "cmake.sourceDirectory": "/workspaces/advent-of-code/2023"
+    "cmake.sourceDirectory": "/workspaces/advent-of-code/2023",
+    "files.associations": {
+        "iosfwd": "cpp"
+    }
 }

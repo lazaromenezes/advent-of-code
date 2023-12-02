@@ -10,3 +10,4 @@ find_package(GTest REQUIRED)
 enable_testing()
 
 add_subdirectory(01)
+add_subdirectory(02)

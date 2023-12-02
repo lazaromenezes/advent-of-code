@@ -22,6 +22,7 @@ int main() {
 
     while(getline(inputFile, line)){
         line = replacerObj.replaceNumbers(line);
+        cout << line << "\n";
         total += finder.findNumber(line);
     }
 
