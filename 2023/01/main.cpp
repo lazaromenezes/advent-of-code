@@ -16,8 +16,6 @@ int main() {
     number_finder finder = number_finder();
     replacer replacerObj = replacer();
 
-    cout << "Checking input\n";
-
     int total = 0;
 
     string line;
@@ -29,5 +27,5 @@ int main() {
 
     inputFile.close();
 
-    cout << total << "\n";
+    cout << "Total: " << total << "\n";
 }
