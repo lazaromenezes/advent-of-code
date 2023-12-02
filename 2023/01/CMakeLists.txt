@@ -3,7 +3,9 @@ find_package(GTest REQUIRED)
 add_library(number-finder number-finder.cpp)
 add_library(replacer replacer.cpp)
 
-add_executable(tests_01 number-finder-tests.cpp replacer-tests.cpp)
+file(GLOB TEST_FILES CONFIGURE_DEPENDS ./*-tests.cpp)
+
+add_executable(tests_01 ${TEST_FILES})
 target_link_libraries(tests_01 number-finder replacer GTest::gtest_main)
 
 add_executable(main_01 main.cpp)

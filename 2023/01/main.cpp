@@ -10,23 +10,32 @@ using std::getline;
 using aoc2023_01::number_finder;
 using aoc2023_01::replacer;
 
-int main() {
-    std::ifstream inputFile("./input", std::ifstream::in);
+int main(int argc, char *argv[]) {
+    auto inputFilePath = argc == 1 ? "./input" : argv[1];
+    
+    std::ifstream inputFile(inputFilePath, std::ifstream::in);
 
     number_finder finder = number_finder();
     replacer replacerObj = replacer();
 
-    int total = 0;
+    int totalOnlyDigits, totalWithLiterals = 0;
 
     string line;
 
     while(getline(inputFile, line)){
+        totalOnlyDigits += finder.findNumber(line);
         line = replacerObj.replaceNumbers(line);
         cout << line << "\n";
-        total += finder.findNumber(line);
+        totalWithLiterals += finder.findNumber(line);
     }
 
     inputFile.close();
 
-    cout << "Total: " << total << "\n";
+    cout << "\n" 
+         << "Total only digits: " 
+         << totalOnlyDigits 
+         << "\n" 
+         << "Total with literals: " 
+         << totalWithLiterals << 
+         "\n";
 }
