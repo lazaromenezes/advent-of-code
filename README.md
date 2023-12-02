@@ -25,3 +25,4 @@ Advent of code challenges
 I'll be using C++ for all challenges this year
 
 1. [Day 1: Trebuchet?!](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/01)
+1. [Day 2: Cube Conundrum](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/02)
