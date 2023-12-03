@@ -16,8 +16,8 @@ namespace aoc2023_01 {
 
         while(regex_search(input, matches, LITERALS)){
             std::ssub_match match = matches[0];
-
-            input = matches.prefix().str() + LITERAL_MAP[match.str()] + matches.suffix().str();
+            string suffix = match.str()[match.length() - 1] + matches.suffix().str();
+            input = matches.prefix().str() + LITERAL_MAP[match.str()] + suffix;
         };
         
         return input;
