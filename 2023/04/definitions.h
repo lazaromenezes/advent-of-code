@@ -19,6 +19,7 @@ namespace aoc2023_04 {
 
         static Scratchcard fromString(string string);
         int points();
+        int nmatches();
     };
 
     typedef vector<Scratchcard> Scratchcards;

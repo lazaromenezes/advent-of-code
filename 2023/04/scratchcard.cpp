@@ -2,20 +2,26 @@
 #include <math.h>
 
 namespace aoc2023_04 {
-    const std::regex CARD_ID_REGEX = std::regex("Card (\\d{1,}):");
+    const std::regex CARD_ID_REGEX = std::regex("Card {1,}(\\d{1,}):");
     const std::regex NUMBER_REGEX = std::regex("(\\d{1,})");
 
     int Scratchcard::points(){
         if(numbers.empty())
             return 0;
 
-        int intersects = -1;
+        int intersects = nmatches() - 1;
+
+        return std::pow(2, intersects);
+    }
+
+    int Scratchcard::nmatches(){
+        int intersects = 0;
         
         for(int n : numbers)
             if(std::find(winNumbers.begin(), winNumbers.end(), n) != std::end(winNumbers))
                 intersects++;
 
-        return std::pow(2, intersects);
+        return intersects;
     }
 
     Scratchcard Scratchcard::fromString(string cardString){

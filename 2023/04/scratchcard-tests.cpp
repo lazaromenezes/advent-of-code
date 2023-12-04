@@ -36,6 +36,12 @@ namespace aoc2023_04_tests {
         ASSERT_EQ(card.id, 5);
     }
 
+    TEST(SCRATCHCARD, from_string_populates_id_properly_if_idented){
+        Scratchcard card = Scratchcard::fromString("Card   5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36");
+
+        ASSERT_EQ(card.id, 5);
+    }
+
     TEST(SCRATCHCARD, from_string_populates_win_numbers_properly){
         Scratchcard card = Scratchcard::fromString("Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36");
 
@@ -46,5 +52,11 @@ namespace aoc2023_04_tests {
         Scratchcard card = Scratchcard::fromString("Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36");
 
         ASSERT_THAT(card.numbers, ElementsAre(88, 30, 70, 12, 93, 22, 82, 36));
+    }
+
+    TEST(SCRATCHCARD, nmatches_is_the_number_of_intersections){
+        Scratchcard card = {.winNumbers = {2, 3}, .numbers = {1, 2, 3, 3, 2}};
+
+        ASSERT_EQ(card.nmatches(), 4);
     }
 }
