@@ -14,6 +14,7 @@ namespace aoc2023_04 {
 
     struct Scratchcard{
         int id;
+        int amount = 1;
         NumberList winNumbers;
         NumberList numbers;
 

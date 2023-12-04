@@ -9,18 +9,17 @@ using aoc2023_04::Scratchcard;
 using std::getline;
 using std::cout;
 
-int calculateCards(Scratchcards cards, const Scratchcards initialSet) {
-    int totalCards = cards.size();
+int calculateByCount(Scratchcards& cards) {
+    int totalCards = 0;
 
-    for(Scratchcard card : cards) {
+    for(Scratchcard& card : cards) {
         int nmatches = card.nmatches();
-        
-        Scratchcards copies = {};
+        for(int i = 0; i < nmatches; i++){
+            Scratchcard& next = cards[card.id + i];
+            next.amount += card.amount;
+        }
 
-        for(int i = 0; i < nmatches; i++)
-            copies.emplace_back(initialSet[card.id + i]);
-
-        totalCards += calculateCards(copies, initialSet);
+        totalCards += card.amount;
     }
 
     return totalCards;
@@ -44,7 +43,7 @@ int main(int argc, char *argv[]) {
     };
 
     cout << "\nTotal points: " << totalPoints << "\n";
-    cout << "Added cards: " << calculateCards(originalCards, originalCards) << "\n";
+    cout << "Added cards: " << calculateByCount(originalCards) << "\n";
 
     inputFile.close();
 };
