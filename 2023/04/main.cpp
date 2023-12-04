@@ -13,7 +13,6 @@ int calculateCards(Scratchcards cards, const Scratchcards initialSet) {
     int totalCards = cards.size();
 
     for(Scratchcard card : cards) {
-        //cout << "Checking card #" << card.id << "\n";
         int nmatches = card.nmatches();
         
         Scratchcards copies = {};
