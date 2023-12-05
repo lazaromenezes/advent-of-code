@@ -47,7 +47,6 @@ namespace aoc2023_02{
         vector<Draw> draws{};
 
         initial = gameString.find(':');
-        int i = 0;
         do{
             block = gameString.find(';', initial + 1);
 
