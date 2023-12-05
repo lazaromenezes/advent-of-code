@@ -6,7 +6,7 @@
 namespace aoc2023_05 {
     Seeds parseSeeds(std::string seedsString){
         const char COLON = ':';
-        const std::regex DIGITS("(\\d{1,})");
+        const std::regex DIGITS("(\\d{1,}) (\\d{1,})");
 
         std::string sub = aoclib2023::split(seedsString, COLON)[1];
 
@@ -17,8 +17,10 @@ namespace aoc2023_05 {
 
         for(auto match = begin; match != end; ++match){
             std::smatch smatch = *match;
+            long start = atol(smatch[1].str().c_str());
+            long amount = atol(smatch[2].str().c_str());
 
-            seeds.emplace_back(atol(smatch.str().c_str()));
+            seeds.emplace_back(start, amount);
         }
 
         return seeds;

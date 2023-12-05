@@ -15,9 +15,18 @@ namespace aoc2023_05 {
         long map(long source);
     };
 
+    struct SeedInfo {
+        long start, amount;
+
+        SeedInfo(long start, long amount){
+            this->start = start;
+            this->amount = amount;
+        }
+    };
+
     typedef std::vector<MapRange> Map;
     typedef std::vector<Map> Almanac;
-    typedef std::vector<long> Seeds;
+    typedef std::vector<SeedInfo> Seeds;
     typedef std::vector<long> Locations;
 
     long mapDestination(Map map, long source);

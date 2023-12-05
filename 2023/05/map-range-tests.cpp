@@ -6,7 +6,6 @@ using aoc2023_05::MapRange;
 using aoc2023_05::Map;
 using aoc2023_05::Seeds;
 using aoc2023_05::mapDestination;
-using aoc2023_05::parseSeeds;
 
 using testing::ElementsAre;
 
@@ -71,14 +70,6 @@ namespace aoc2023_05_tests {
         const long DEST = 51;
 
         ASSERT_EQ(mapDestination(map, SOURCE), DEST);
-    }
-
-    TEST(PARSE_SEEDS, parse_seeds_row_properly){
-        std::string seedString = "seeds: 79 14 55 13";
-
-        Seeds seeds = parseSeeds(seedString);
-
-        ASSERT_THAT(seeds, ElementsAre(79, 14, 55, 13));
     }
 
     TEST(MAP_DESTINATION, using_big_ranges){
