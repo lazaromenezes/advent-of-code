@@ -82,12 +82,12 @@ namespace aoc2023_05_tests {
     }
 
     TEST(MAP_DESTINATION, using_big_ranges){
-        MapRange range1 = MapRange{.destinationStart = 1288156819, .sourceStart = 0, .range = 597717};
+        MapRange range1 = MapRange{.destinationStart = 0, .sourceStart = 70000000000, .range = 500000};
 
         Map map = {range1};
 
-        const long SOURCE = 78570222;
-        const long DEST = 51;
+        const long SOURCE = 70000000005;
+        const long DEST = 5;
 
         ASSERT_EQ(mapDestination(map, SOURCE), DEST);
     }
