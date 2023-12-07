@@ -60,12 +60,16 @@ namespace aoc2023_06{
     }
 
     long winningChances(Race race){
-        long winningCall = 0;
+        long halfAllowed = (race.allowedTime + race.allowedTime % 2) / 2;
+        long attempt = 0;
+        long distance = 0;
 
-        for(long i = 0; i <= race.allowedTime; i++)
+        for(int i = 0; i <= halfAllowed; i++){
             if(race.calculateDistance(i) > race.recordDistance)
-                winningCall++;
+                break;
+            attempt++;
+        }
 
-        return winningCall;
+        return (halfAllowed - attempt) * 2 + (race.allowedTime + 1) % 2;
     }
 }

@@ -28,3 +28,5 @@ I'll be using C++ for all challenges this year
 2. [Day 2: Cube Conundrum](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/02)
 3. [Day 3: Gear Ratios](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/03) [part 1 so far]
 4. [Day 4: Scratchcards](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/04)
+5. [Day 5: If You Give A Seed A Fertilizer](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/05) [part 1 so far]
+6. [Day 6: Wait For It](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/06)
