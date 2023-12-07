@@ -24,37 +24,47 @@ namespace aoc2023_06_tests {
         ASSERT_EQ(races[2].recordDistance, 200);
     }
 
-    TEST(MODELS, distance_travelled_is_zero_if_time_pressed_is_zero){
+    TEST(RACE, can_create_race_from_string) {
+        std::string times = "Time:      7  15   30";
+        std::string distances = "Distance:  9  40  200";
+
+        auto race = Race::fromStrings(times, distances);
+
+        ASSERT_EQ(race.allowedTime, 71530);
+        ASSERT_EQ(race.recordDistance, 940200);
+    }
+
+    TEST(RACE, distance_travelled_is_zero_if_time_pressed_is_zero){
         Race race = Race(7, 9);
 
-        int distance = race.calculateDistance(0);
+        long distance = race.calculateDistance(0);
 
         ASSERT_EQ(distance, 0);
     }
 
-    TEST(MODELS, distance_travelled_is_zero_if_time_pressed_is_total_allowed){
+    TEST(RACE, distance_travelled_is_zero_if_time_pressed_is_total_allowed){
         Race race = Race(7, 9);
 
-        int distance = race.calculateDistance(7);
+        long distance = race.calculateDistance(7);
 
         ASSERT_EQ(distance, 0);
     }
 
-    TEST(MODELS, distance_travelled_is_zero_if_time_pressed_is_bigger_than_allowed){
+    TEST(RACE, distance_travelled_is_zero_if_time_pressed_is_bigger_than_allowed){
         Race race = Race(7, 9);
 
-        int distance = race.calculateDistance(9);
+        long distance = race.calculateDistance(9);
 
         ASSERT_EQ(distance, 0);
     }
 
-    TEST(MODELS, distance_travelled_is_the_product_of_time_pressed_and_time_difference){
+    TEST(RACE, distance_travelled_is_the_product_of_time_pressed_and_time_difference){
         Race race = Race(7, 9);
 
-        int times[6] = {1, 2, 3, 4, 5, 6};
-        int expected[6] = {6, 10, 12, 12, 10, 6};
+        long times[6] = {1, 2, 3, 4, 5, 6};
+        long expected[6] = {6, 10, 12, 12, 10, 6};
 
-        for(int i = 0; i < 6; i++)
+        for(long i = 0; i < 6; i++)
             ASSERT_EQ(expected[i], race.calculateDistance(times[i]));      
     }
 
@@ -64,9 +74,9 @@ namespace aoc2023_06_tests {
         Race race3 = Race(30, 200);
 
         Races races = {race1, race2, race3};
-        int expected[3] = {4, 8, 9};
+        long expected[3] = {4, 8, 9};
 
-        for(int r = 0; r < races.size(); r++)
+        for(long r = 0; r < races.size(); r++)
             ASSERT_EQ(expected[r], aoc2023_06::winningChances(races[r]));
     }
 };

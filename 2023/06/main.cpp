@@ -18,12 +18,18 @@ int main(int argc, char *argv[]) {
     getline(inputFile, times);
     getline(inputFile, distances);
 
-    int winningChances = 1;
+    inputFile.close();
+
+    long winningChances = 1;
 
     for(auto race : aoc2023_06::buildRaces(times, distances))
         winningChances *= aoc2023_06::winningChances(race);
 
-    inputFile.close();
-
     cout << "Winning chances: " << winningChances << "\n";
+
+    auto singlRace = aoc2023_06::Race::fromStrings(times, distances);
+
+    cout << "Single race winning chances: " 
+         << aoc2023_06::winningChances(singlRace) 
+         << "\n";
 };

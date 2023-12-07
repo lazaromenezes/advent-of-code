@@ -5,19 +5,21 @@
 
 namespace aoc2023_06 {
     struct Race {
-        int allowedTime;
-        int recordDistance;
+        long allowedTime;
+        long recordDistance;
 
-        Race(int allowedTime, int recordDistance) {
+        Race(long allowedTime, long recordDistance) {
             this->allowedTime = allowedTime;
             this->recordDistance = recordDistance;
         }
 
-        int calculateDistance(int timePressed);
+        long calculateDistance(long timePressed);
+
+        static Race fromStrings(std::string times, std::string distances);
     };
 
     typedef std::vector<Race> Races;
 
     Races buildRaces(std::string times, std::string distances);
-    int winningChances(Race race);
+    long winningChances(Race race);
 }
