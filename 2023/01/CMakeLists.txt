@@ -6,10 +6,10 @@ add_library(replacer replacer.cpp)
 file(GLOB TEST_FILES CONFIGURE_DEPENDS ./*-tests.cpp)
 
 add_executable(tests_01 ${TEST_FILES})
-target_link_libraries(tests_01 number-finder replacer GTest::gtest_main)
+target_link_libraries(tests_01 number-finder aoclib2023 replacer GTest::gtest_main)
 
 add_executable(main_01 main.cpp)
-target_link_libraries(main_01 number-finder replacer)
+target_link_libraries(main_01 number-finder aoclib2023 replacer)
 add_custom_command(
     TARGET main_01 POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy

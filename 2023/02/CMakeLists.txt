@@ -5,10 +5,10 @@ add_library(models models.cpp)
 file(GLOB TEST_FILES CONFIGURE_DEPENDS ./*-tests.cpp)
 
 add_executable(tests_02 ${TEST_FILES})
-target_link_libraries(tests_02 models GTest::gtest_main)
+target_link_libraries(tests_02 models aoclib2023 GTest::gtest_main)
 
 add_executable(main_02 main.cpp)
-target_link_libraries(main_02 models)
+target_link_libraries(main_02 aoclib2023 models)
 
 add_custom_command(
     TARGET main_02 POST_BUILD

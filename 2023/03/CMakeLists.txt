@@ -5,10 +5,10 @@ add_library(03_lib number-finder.cpp boundary-calculator.cpp number-validator.cp
 file(GLOB TEST_FILES CONFIGURE_DEPENDS ./*-tests.cpp)
 
 add_executable(tests_03 ${TEST_FILES})
-target_link_libraries(tests_03 03_lib GTest::gtest_main)
+target_link_libraries(tests_03 03_lib aoclib2023 GTest::gtest_main)
 
 add_executable(main_03 main.cpp)
-target_link_libraries(main_03 03_lib)
+target_link_libraries(main_03 aoclib2023 03_lib)
 
 add_custom_command(
     TARGET main_03 POST_BUILD

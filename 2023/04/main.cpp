@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include "definitions.h"
+#include "../aoclib2023.h"
 
 using aoc2023_04::Scratchcards;
 using aoc2023_04::Scratchcard;
@@ -26,24 +27,20 @@ int calculateByCount(Scratchcards& cards) {
 }
 
 int main(int argc, char *argv[]) {
-    auto inputFilePath = argc == 1 ? "./input" : argv[1];
-    
-    std::ifstream inputFile(inputFilePath, std::ifstream::in);
+    aoclib2023::withInput(argc, argv, [](std::ifstream& inputFile){
+        int totalPoints = 0;
 
-    int totalPoints = 0;
+        Scratchcards originalCards;
 
-    Scratchcards originalCards;
+        string line;
 
-    string line;
+        while(getline(inputFile, line)){
+            Scratchcard card = Scratchcard::fromString(line);
+            originalCards.emplace_back(card);
+            totalPoints += card.points();
+        };
 
-    while(getline(inputFile, line)){
-        Scratchcard card = Scratchcard::fromString(line);
-        originalCards.emplace_back(card);
-        totalPoints += card.points();
-    };
-
-    cout << "\nTotal points: " << totalPoints << "\n";
-    cout << "Added cards: " << calculateByCount(originalCards) << "\n";
-
-    inputFile.close();
+        cout << "\nTotal points: " << totalPoints << "\n";
+        cout << "Added cards: " << calculateByCount(originalCards) << "\n";
+    });
 };

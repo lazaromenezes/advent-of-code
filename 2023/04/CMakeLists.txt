@@ -5,10 +5,10 @@ add_library(04_lib scratchcard.cpp)
 file(GLOB TEST_FILES CONFIGURE_DEPENDS ./*-tests.cpp)
 
 add_executable(tests_04 ${TEST_FILES})
-target_link_libraries(tests_04 04_lib GTest::gtest_main)
+target_link_libraries(tests_04 04_lib aoclib2023 GTest::gtest_main)
 
 add_executable(main_04 main.cpp)
-target_link_libraries(main_04 04_lib)
+target_link_libraries(main_04 04_lib aoclib2023)
 
 add_custom_command(
     TARGET main_04 POST_BUILD

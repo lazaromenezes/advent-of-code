@@ -20,4 +20,14 @@ namespace aoclib2023 {
 
         return items;
     }
+
+    void withInput(int argc, char* argv[], void (*findSolution)(std::ifstream&)) {
+        auto inputFilePath = argc == 1 ? "./input" : argv[1];
+    
+        std::ifstream inputFile = std::ifstream(inputFilePath, std::ifstream::in);
+
+        findSolution(inputFile);
+
+        inputFile.close();
+    }
 }
