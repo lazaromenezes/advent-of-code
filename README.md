@@ -30,3 +30,4 @@ I'll be using C++ for all challenges this year
 4. [Day 4: Scratchcards](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/04)
 5. [Day 5: If You Give A Seed A Fertilizer](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/05) [part 1 so far]
 6. [Day 6: Wait For It](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/06)
+7. [Day 7: Camel Cards](https://github.com/lazaromenezes/advent-of-code/tree/main/2023/07)
