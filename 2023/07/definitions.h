@@ -5,7 +5,7 @@
 
 namespace aoc2023_07 {
     enum struct HandType : short {FIVE_OF = 6, FOUR_OF = 5, FULL_HOUSE = 4, THREE_OF = 3, TWO_PAIR = 2, ONE_PAIR = 1, HIGH = 0};
-    const std::string CARD_ORDER = "23456789TJQKA";
+    const std::string CARD_ORDER = "J23456789TQKA";
 
     struct Hand{
         std::string cards;

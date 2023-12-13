@@ -196,16 +196,9 @@ namespace aoc2023_07_tests {
         ASSERT_TRUE(smallHand < bigHand);
     }
 
-    TEST(HAND, q_is_bigger_than_j){
-        auto smallHand = aoc2023_07::Hand{.cards = "JJJJJ"};
-        auto bigHand = aoc2023_07::Hand{.cards = "QQQQQ"};
-
-        ASSERT_TRUE(smallHand < bigHand);
-    }
-
-    TEST(HAND, j_is_bigger_than_t){
+    TEST(HAND, q_is_bigger_than_t){
         auto smallHand = aoc2023_07::Hand{.cards = "TTTTT"};
-        auto bigHand = aoc2023_07::Hand{.cards = "JJJJJ"};
+        auto bigHand = aoc2023_07::Hand{.cards = "QQQQQ"};
 
         ASSERT_TRUE(smallHand < bigHand);
     }
@@ -213,6 +206,13 @@ namespace aoc2023_07_tests {
     TEST(HAND, t_is_bigger_than_9){
         auto smallHand = aoc2023_07::Hand{.cards = "99999"};
         auto bigHand = aoc2023_07::Hand{.cards = "TTTTT"};
+
+        ASSERT_TRUE(smallHand < bigHand);
+    }
+
+    TEST(HAND, j_is_less_than_2){
+        auto smallHand = aoc2023_07::Hand{.cards = "JJJJJ"};
+        auto bigHand = aoc2023_07::Hand{.cards = "22222"};
 
         ASSERT_TRUE(smallHand < bigHand);
     }
@@ -227,9 +227,34 @@ namespace aoc2023_07_tests {
     }
 
     TEST(HAND, same_hand_type_reverse){
-        auto smallHand = aoc2023_07::Hand{.cards = "KTJJT"};
+        auto smallHand = aoc2023_07::Hand{.cards = "KTAAT"};
         auto bigHand = aoc2023_07::Hand{.cards = "KK677"};
 
         ASSERT_FALSE(bigHand < smallHand);
+    }
+
+    TEST(HAND_TYPE, KKJ77_is_full_house_due_joker){
+        auto hand = aoc2023_07::Hand{.cards = "KKJ77"};
+
+        ASSERT_EQ(aoc2023_07::HandType::FULL_HOUSE, hand.type());
+    }
+
+    TEST(HAND_TYPE, 8JJJJ_is_five_of_a_kind){
+        auto hand = aoc2023_07::Hand{.cards = "8JJJJ"};
+
+        ASSERT_EQ(aoc2023_07::HandType::FIVE_OF, hand.type());
+    }
+
+    TEST(HAND_TYPE, JJJJJ_is_five_of_a_kind){
+        auto hand = aoc2023_07::Hand{.cards = "JJJJJ"};
+
+        ASSERT_EQ(aoc2023_07::HandType::FIVE_OF, hand.type());
+    }
+
+    TEST(HAND, joker_is_not_higher_card){
+        auto smallHand = aoc2023_07::Hand{.cards = "JQQQK"};
+        auto bigHand = aoc2023_07::Hand{.cards = "2222K"};
+
+        ASSERT_TRUE(smallHand < bigHand);
     }
 };
