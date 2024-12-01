@@ -1,0 +1,13 @@
+{
+  "name": "advc2024",
+  "version": "1.0.0",
+  "description": "Advent of Code 2024",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lazaro Menezes",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
