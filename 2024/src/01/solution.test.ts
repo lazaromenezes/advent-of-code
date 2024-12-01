@@ -1,9 +1,19 @@
-import { firstSolution } from './solution'
+import { firstSolution, secondSolution } from './solution'
 
-describe("First part", () => {
-    it('Should give sample output with test-input', async () => {
-        var solution = await firstSolution('01/test-input')
-
-        expect(solution).toBe(11)
+describe("Day 1", () => {
+    describe("First part", () => {
+        it('Should give sample output with test-input', async () => {
+            var solution = await firstSolution('src/01/test-input')
+    
+            expect(solution).toBe(11)
+        })
+    })
+    
+    describe("Second part", () => {
+        it('Should give the similarity score sum', async () => {
+            var solution = await secondSolution('src/01/test-input')
+    
+            expect(solution).toBe(31)
+        })
     })
 })

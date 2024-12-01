@@ -1,4 +1,4 @@
-import {calculateDifference, parse} from './util'
+import {calculateDifference, calculateScores, parse} from './util'
 
 test('parser returns two sorted list of integers', () => {
     const input = `3   4\n4   3\n`
@@ -15,4 +15,13 @@ test('calculate the absolute difference returns an array with the difference bet
     const difference = calculateDifference(left, right)
 
     expect(difference).toEqual([2, 2])
+})
+
+test('calculate the score for the given inputs', () => {
+    const left = [3, 4, 3, 2]
+    const right = [3, 3, 4, 5]
+
+    const difference = calculateScores(left, right)
+
+    expect(difference).toEqual([6, 4, 6, 0])
 })

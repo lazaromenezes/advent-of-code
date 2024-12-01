@@ -1,6 +1,6 @@
-type LocationId = Array<number> 
+type LocationIdList = Array<number> 
 
-export function parse(data: String): Array<LocationId> {
+export function parse(data: String): Array<LocationIdList> {
     const lines = data.split("\n")
 
     const left: number[] = [], right: number[] = []
@@ -18,6 +18,10 @@ export function parse(data: String): Array<LocationId> {
     return [left.sort(), right.sort()]
 }
 
-export function calculateDifference(left: LocationId, right: LocationId) {
+export function calculateDifference(left: LocationIdList, right: LocationIdList) {
     return left.map((val, idx) => Math.abs(val - right[idx]))
+}
+
+export function calculateScores(left: LocationIdList, right: LocationIdList) {
+    return left.map((val) => val * right.filter((r) => r === val).length)
 }
