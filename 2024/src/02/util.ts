@@ -20,9 +20,27 @@ export function calculateReport(report: Report) : Difference[] {
     return differences
 }
 
-export function isSafe(differences: Difference[]) {
+export function isSafe(differences: Difference[]) : boolean{
     let safe = differences.every(d => d < 0) || differences.every(d => d > 0)
     safe = safe && differences.every(d => Math.abs(d) <= 3)
 
-    return  safe
+    return safe
+}
+
+export function isSafeWithDampper(report: Report) : boolean{
+    const fullReport = calculateReport(report)
+    
+    if(isSafe(fullReport))
+        return true
+
+    let safe = false
+    let dampIndex = 0
+
+    while(!safe && dampIndex < report.length){
+        let current = [...report.slice(0, dampIndex++), ...report.slice(dampIndex)]
+
+        safe = isSafe(calculateReport(current))
+    }
+
+    return safe
 }
