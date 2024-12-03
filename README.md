@@ -37,3 +37,5 @@ I'll be using C++ for all challenges this year
 Training Typescript this season
 
 1. [Day 1: Historian Hysteria](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/01)
+2. [Day 2: Red-Nosed Reports](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/02)
+3. [Day 3: Mull It Over](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/03)
