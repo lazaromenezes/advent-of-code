@@ -39,4 +39,5 @@ Training Typescript this season
 1. [Day 1: Historian Hysteria](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/01)
 2. [Day 2: Red-Nosed Reports](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/02)
 3. [Day 3: Mull It Over](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/03)
-3. [Day 4: Ceres Search](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/04)
+4. [Day 4: Ceres Search](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/04)
+5. [Day 5: Print Queue](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/05)

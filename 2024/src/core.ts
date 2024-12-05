@@ -1,2 +1,5 @@
 export const NEW_LINE = '\n'
+export const BLANK_LINE = '\n\n'
 export const SPACE = ' '
+export const PIPE = '|'
+export const COMMA = ','
