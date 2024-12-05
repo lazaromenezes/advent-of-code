@@ -52,3 +52,14 @@ export function isValid(input: Update, rules: Rules) {
 export function findMiddlePage(input: Update) : number {
     return input[Math.floor(input.length / 2)]
 }
+
+export function sort(input: Update, rules: Rules) : Update {
+    const sorted = input.sort((current, other) => {
+        if(!(current in rules))
+            return 0
+        
+        return rules[current].includes(other) ? -1 : 1
+    })
+
+    return sorted
+}

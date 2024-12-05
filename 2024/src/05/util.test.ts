@@ -1,4 +1,4 @@
-import { findMiddlePage, isValid as isValidUpdate, parseRules, parseUpdates, split } from "./util"
+import { findMiddlePage, isValid as isValidUpdate, parseRules, parseUpdates, sort, split } from "./util"
 
 describe("Parsing", () => {
     test("Split input in rules and pages", () => {
@@ -63,3 +63,44 @@ describe("Find Middle Page", () => {
         expect(findMiddlePage(update)).toBe(61)
     })
 })
+
+describe("Sorting", () => {
+    test("Can sort a invalid update breaking single rule", () => {
+        const update = [75,97,47,61,53]
+
+        const rules = {
+            75: [47, 61, 53, 29], 
+            47: [61, 53, 29],
+            61: [53, 29],
+            53: [29],
+            97: [75]
+        }
+
+        expect(isValidUpdate(update, rules)).toBeFalsy()
+
+        const sorted = sort(update, rules)
+
+        expect(sorted).toEqual([97, 75, 47, 61, 53])
+        expect(isValidUpdate(sorted, rules)).toBeTruthy()
+    })
+
+    test("Can sort a invalid update breaking several rules", () => {
+        const update = [97,13,75,29,47]
+
+        const rules = {
+            75: [47, 61, 53, 29, 13], 
+            47: [61, 53, 29, 13],
+            97: [13, 61, 47, 53, 29, 75],
+            29: [13]
+        }
+
+        expect(isValidUpdate(update, rules)).toBeFalsy()
+
+        const sorted = sort(update, rules)
+
+        expect(sorted).toEqual([97, 75, 47, 29, 13])
+        expect(isValidUpdate(sorted, rules)).toBeTruthy()
+    })
+})
+
+//
