@@ -61,9 +61,9 @@ function countCrossMas(rows: string[], row: number, col: number): number {
     if(prevCol < 0 || nextCol >= rows[row].length)
         return 0
 
-    const topLeft = rows[prevRow][prevCol], 
-    const topRight = rows[prevRow][nextCol],
-    const bottomLeft = rows[nextRow][prevCol],
+    const topLeft = rows[prevRow][prevCol] 
+    const topRight = rows[prevRow][nextCol]
+    const bottomLeft = rows[nextRow][prevCol]
     const bottomRight = rows[nextRow][nextCol]
 
     if([topLeft, topRight, bottomLeft, bottomRight].every(v => v === 'M' || v === 'S'))
