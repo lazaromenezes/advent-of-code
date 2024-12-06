@@ -1,0 +1,4 @@
+#/usr/bin/env bash
+
+npm run build
+time node out/$1/index.js src/$1/input.txt
