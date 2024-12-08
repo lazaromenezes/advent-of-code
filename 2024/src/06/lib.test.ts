@@ -29,8 +29,8 @@ describe("Simulation", () => {
     test("Quick turn", () => {
         const input = `..#..\n....#\n#.^..\n...#.\n.....`
 
-        const visitedPositions = simulate(input)
+        const result = simulate(input)
 
-        expect(visitedPositions).toEqual(7)
+        expect(result.uniquePositions.length).toEqual(7)
     })
 })

@@ -4,6 +4,13 @@ type Point = {x: number, y: number}
 type AreaSize = {w: number, h: number}
 type Map = string[]
 
+enum Outcome{
+    EXITED,
+    LOOP
+}
+
+type SimulationResult = {uniquePositions: Point[], outcome: Outcome}
+
 const NEW_LINE_RE = /\n/g
 
 const UP = {x: -1, y: 0}
@@ -29,7 +36,7 @@ export function findInitialPosition(input: string, rows: number, cols: number) :
     return {x, y}
 }
 
-export function simulate(input: string) : number {
+export function simulate(input: string) : SimulationResult {
     const map = input.split(NEW_LINE)
     const area = {h: map.length, w: map[0].length}
 
@@ -60,7 +67,7 @@ export function simulate(input: string) : number {
         position = targetPosition
     }
     
-    return visitedPositions.length
+    return {uniquePositions: visitedPositions, outcome: Outcome.EXITED}
 }
 
 function planMove(currentPosition: Point, direction: Point) : Point{
