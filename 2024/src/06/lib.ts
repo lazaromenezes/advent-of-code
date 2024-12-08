@@ -43,6 +43,38 @@ export function simulate(input: string) : SimulationResult {
     const area = {h: map.length, w: map[0].length}
 
     let position = findInitialPosition(input, area.h, area.w)
+
+    return runSimulation(map, area, position)
+}
+
+export function simlateBlocks(input: string) : Point[] {
+    const map = input.split(NEW_LINE)
+    const area = {h: map.length, w: map[0].length}
+
+    const initialPosition = findInitialPosition(input, area.h, area.w)
+    const {uniquePositions} = runSimulation(map, area, initialPosition)
+    
+    const candidatePositions = uniquePositions.filter(p => !isSamePoint(p, initialPosition))
+
+    let blockPositions: Point[] = []
+
+    candidatePositions.forEach(p => {
+        const changedMap = [...map]
+        const row = changedMap[p.x]
+        const replaced = `${row.slice(0, p.y)}${POUND}${row.slice(p.y+1)}`
+        changedMap[p.x] = replaced
+
+        const newSimulation = runSimulation(changedMap, area, initialPosition)
+
+        if(newSimulation.outcome === Outcome.LOOP)
+            blockPositions.push(p)
+    })
+
+    return blockPositions
+}
+
+function runSimulation(map: Map, area: AreaSize, initialPosition: Point){
+    let position = initialPosition
     let direction = UP
     let uniquePositions: Point[] = []
     let hits: Hit[] = []
@@ -75,34 +107,6 @@ export function simulate(input: string) : SimulationResult {
     }
     
     return {uniquePositions, hits, outcome: Outcome.EXITED}
-}
-
-export function simlateBlocks(input: string) : Point[] {
-    const map = input.split(NEW_LINE)
-    const area = {h: map.length, w: map[0].length}
-
-    const initialPosition = findInitialPosition(input, area.h, area.w)
-    const {uniquePositions} = simulate(input)
-    
-    const candidatePositions = uniquePositions.filter(p => !isSamePoint(p, initialPosition))
-
-    let blockPositions: Point[] = []
-
-    candidatePositions.forEach(p => {
-        const changedMap = [...map]
-        const row = changedMap[p.x]
-        const replaced = `${row.slice(0, p.y)}${POUND}${row.slice(p.y+1)}`
-        changedMap[p.x] = replaced
-
-        const rebuiltInput = changedMap.join(NEW_LINE)
-
-        const newSimulation = simulate(rebuiltInput)
-
-        if(newSimulation.outcome === Outcome.LOOP)
-            blockPositions.push(p)
-    })
-
-    return blockPositions
 }
 
 function planMove(currentPosition: Point, direction: Point) : Point{
