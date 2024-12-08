@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises'
-import { simulate } from './lib'
+import { simlateBlocks, simulate } from './lib'
 
 export async function firstSolution(path: string): Promise<number> {
     const input = await fs.readFile(path)
@@ -7,4 +7,12 @@ export async function firstSolution(path: string): Promise<number> {
     const result = simulate(input.toString())
 
     return result.uniquePositions.length
+}
+
+export async function secondSolution(path: string): Promise<number> {
+    const input = await fs.readFile(path)
+
+    const result = simlateBlocks(input.toString())
+
+    return result.length
 }

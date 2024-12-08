@@ -1,4 +1,5 @@
-import { findInitialPosition, isInArea, simulate } from "./lib"
+import exp from "node:constants"
+import { findInitialPosition, isInArea, Outcome, simulate } from "./lib"
 
 describe("Positioning", () => {
     test("isInArea if target position is within boundaries", () => {
@@ -31,6 +32,18 @@ describe("Simulation", () => {
 
         const result = simulate(input)
 
+        expect(result.outcome).toBe(Outcome.EXITED)
         expect(result.uniquePositions.length).toEqual(7)
+    })
+})
+
+describe("Loops", () => {
+    test("Is loop if hits same point in same direction", () => {
+        const input = `.##..\n....#\n#.^..\n.#.#.\n.....`
+
+        const result = simulate(input)
+
+        expect(result.outcome).toBe(Outcome.LOOP)
+        expect(result.hits.length).toEqual(5)
     })
 })
