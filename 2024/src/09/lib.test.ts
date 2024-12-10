@@ -1,5 +1,5 @@
 import { EMPTY, PERIOD } from "../core"
-import { calculateChecksum, defragment, expandDisk } from "./lib"
+import { calculateChecksum, defragment, defragmentV2, expandDisk, scanDisk } from "./lib"
 
 describe("Checksum", () => {
     test("Calculate checksum returns the correct result", () => {
@@ -17,29 +17,31 @@ describe("Checksum", () => {
     
         expect(checksum).toEqual(1928)
     })
+
+    test("Calculate checksum returns the correct result when nulls are present", () => {
+        const fileBlocks = [0, 0, null, 9, null]
+    
+        const checksum = calculateChecksum(fileBlocks)
+    
+        expect(checksum).toEqual(27)
+    })
 })
 
 describe("Expand disk", () => {
     test("Expand disk finishing on file", () => {
-        const input = "12345"
-    
-        const expandedDisk = expandDisk(input)
+        const expandedDisk = expandDisk({files: [1, 3, 5], spaces: [2, 4]})
     
         expect(expandedDisk).toEqual([0, null, null, 1, 1, 1, null, null, null, null, 2, 2, 2, 2, 2])
     })
 
     test("Expand disk finishing with empty spaces", () => {
-        const input = "123452"
-    
-        const expandedDisk = expandDisk(input)
+        const expandedDisk = expandDisk({files: [1, 3, 5], spaces: [2, 4, 2]})
     
         expect(expandedDisk).toEqual([0, null, null, 1, 1, 1, null, null, null, null, 2, 2, 2, 2, 2, null, null])
     })
 
     test("Expand disk with no empty spaces", () => {
-        const input = "10305"
-    
-        const expandedDisk = expandDisk(input)
+        const expandedDisk = expandDisk({files: [1, 3, 5], spaces: [0, 0]})
     
         expect(expandedDisk).toEqual([0, 1, 1, 1, 2, 2, 2, 2, 2])
     })
@@ -72,5 +74,44 @@ describe("Defragment disk", () => {
 
         expect(defragmented).toEqual(expected)
     })
+})
 
+describe("Scan Disk", () => {
+    test("Gives the correct scan result", () => {
+        const input = "123452"
+
+        const scan = scanDisk(input)
+
+        expect(scan.files).toEqual([1, 3, 5])
+        expect(scan.spaces).toEqual([2, 4, 2])
+    })
+})
+
+describe("Defragment disk V2", () => {
+    test("Defragment process organize data properly", () => {
+        const expandedDisk = [0, null, null, 1, 1, 1, null, null, null, null, 2, 2, 2]
+
+        const expected = [0, null, null, 1, 1, 1, 2, 2, 2, null, null, null, null]
+
+        const defragmented = defragmentV2(expandedDisk, {files: [1, 3, 3], spaces: [2, 4]})
+
+        expect(defragmented).toEqual(expected)
+    })
+
+    test("Defragment sample input and organize data properly", () => {
+        const mapInputString = ((str: string) => {
+            return str.split(EMPTY).map(i => i === PERIOD ? null : parseInt(i))
+        })
+        
+        const input = "00...111...2...333.44.5555.6666.777.888899"
+        
+        const expandedDisk = mapInputString(input)
+
+        const expectedString = '00992111777.44.333....5555.6666.....8888..'
+        const expected = mapInputString(expectedString)
+
+        const defragmented = defragmentV2(expandedDisk, scanDisk('2333133121414131402'))
+
+        expect(defragmented).toEqual(expected)
+    })
 })

@@ -1,13 +1,16 @@
-import { EMPTY } from "../core"
+import { EMPTY, PERIOD } from "../core"
 
 type Block = number | null
 type Disk = Block[]
+type ScanResult = {files: number[], spaces: number[]}
 
-export function calculateChecksum(blocks: number[]): number {
-    return blocks.reduce((checksum, value, index) => checksum += value * index, 0)
+export function calculateChecksum(blocks: Disk): number {
+    const fixed = blocks.map(b => b || 0)
+
+    return fixed.reduce((checksum, value, index) => checksum += value * index)
 }
 
-export function expandDisk(input: string): Disk {
+export function scanDisk(input: string) {
     const fragmentedDisk = input.toString().split(EMPTY).map(v => parseInt(v))
 
     const files: number[] = []
@@ -19,6 +22,12 @@ export function expandDisk(input: string): Disk {
         else
             spaces.push(value)
     })
+
+    return {files, spaces}
+}
+
+export function expandDisk(scanResult: ScanResult): Disk {
+    const {files, spaces} = scanResult
 
     const expandedDisk: Disk = []
     
@@ -46,6 +55,39 @@ export function defragment(disk: Disk): Disk {
             self[index] = fileBlock!
         }
     })
+
+    return contiguosDisk
+}
+
+export function defragmentV2(disk: Disk, scanResult: ScanResult): Disk {
+    const {files, spaces} = scanResult
+
+    const contiguosDisk = [...disk]
+
+    for(let fileId = files.length - 1; fileId > 0; fileId--){
+        const fileSize = files[fileId]
+
+        let scanIndex = 0
+        
+        do{
+            var spaceSize = 0
+            var spaceIndex = contiguosDisk.indexOf(null, scanIndex)
+
+            do{
+                spaceSize += 1
+            }while(contiguosDisk[spaceIndex + spaceSize] === null)    
+
+            scanIndex += spaceSize   
+
+        }while(scanIndex <= contiguosDisk.length && spaceSize < fileSize)
+
+        if(spaceIndex > 0){
+            for(let b = spaceIndex; b < spaceIndex + files[fileId]; b++){
+                contiguosDisk[b] = fileId
+                contiguosDisk[contiguosDisk.lastIndexOf(fileId)] = null
+            }
+        }
+    }
 
     return contiguosDisk
 }

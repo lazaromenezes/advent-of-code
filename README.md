@@ -41,3 +41,7 @@ Training Typescript this season
 3. [Day 3: Mull It Over](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/03)
 4. [Day 4: Ceres Search](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/04)
 5. [Day 5: Print Queue](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/05)
+6. [Day 6: Guard Gallivant](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/06)
+7. To Be Implemented
+8. To Be Implemented
+9. [Day 9: Disk Fragmenter](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/05)
