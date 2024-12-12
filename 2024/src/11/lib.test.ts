@@ -1,4 +1,4 @@
-import { applyRules, blink, applyRulesV2, blinkV2, count } from "./lib"
+import { applyRules, blink, applyRulesV2, blinkV2, count, run } from "./lib"
 
 describe("Rules", () => {
     test("Zero rule returns an element with value 1", () => {
@@ -97,5 +97,42 @@ describe("Count", () => {
         const stones = [[[1, 2], [3, 4]], 1, [[12, 34], [10, 20]]]
 
         expect(count(stones)).toEqual(9)
+    })
+})
+
+describe("Run", () => {
+    test("Should return record with each stone number count after n runs", () => {
+        const input = [125, 17]
+
+        const mapped = run(input, 3)
+
+        expect(mapped).toEqual({
+            125: 0,
+            17: 0,
+            253000: 0,
+            7: 0,
+            253: 0,
+            0: 0,
+            2024: 0,
+            14168: 0,
+            512072: 1,
+            1: 1,
+            20: 1,
+            24: 1,
+            28676032: 1
+        })
+    })
+
+    test("Should return correct number of stones", () => {
+        const input = [125, 17]
+
+        const mapped = run(input, 6)
+
+        let total = 0
+
+        for(let k in mapped)
+            total += mapped[k]
+
+        expect(total).toEqual(22)
     })
 })

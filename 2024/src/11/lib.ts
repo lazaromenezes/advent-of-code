@@ -1,5 +1,8 @@
+import internal from "node:stream"
+
 const MULTIPLIER = 2024
 
+// V1
 export function blink(stones: number[]): number[] {
     return stones.flatMap(value => applyRules(value))
 }
@@ -21,6 +24,8 @@ export function applyRules(value: number): number[] {
 
     return [value * MULTIPLIER]
 }
+
+// V2 
 
 export function blinkV2(stones: any): any {
     return stones.map((value: any) => applyRulesV2(value))
@@ -60,4 +65,39 @@ export function count(stones: any) {
 
         return total
     }, 0)
+}
+
+// V3
+
+export function run(input: number[], times: number) : Record<number, number>{
+    const state : Record<number, number> = {}
+
+    input.forEach(v => state[v] = 1)
+
+    for(let i = 0; i < times; i++){
+        const initialState = {...state}
+        const values = []
+        
+        for(let v in state){
+            if(state[v] > 0){
+                values.push(parseInt(v))
+                state[v] = 0
+            }
+        }
+
+        values.forEach(v => {
+            let mapped = applyRules(v)
+
+            mapped.forEach(m => {
+                if(m in state)
+                    state[m] += (1 * initialState[v])
+                else
+                    state[m] = (1 * initialState[v])
+            })
+        })
+
+        
+    }
+
+    return state
 }

@@ -44,4 +44,5 @@ Training Typescript this season
 6. [Day 6: Guard Gallivant](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/06)
 7. To Be Implemented
 8. To Be Implemented
-9. [Day 9: Disk Fragmenter](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/05)
+9. [Day 9: Disk Fragmenter](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/09)
+11. [Day 11: Plutonian Pebbles](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/11)
