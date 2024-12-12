@@ -90,9 +90,9 @@ export function run(input: number[], times: number) : Record<number, number>{
 
             mapped.forEach(m => {
                 if(m in state)
-                    state[m] += (1 * initialState[v])
+                    state[m] += initialState[v]
                 else
-                    state[m] = (1 * initialState[v])
+                    state[m] = initialState[v]
             })
         })
 
