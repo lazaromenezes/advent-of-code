@@ -8,7 +8,7 @@ function main(){
     })
 
     secondSolution(filePath).then(result => {
-        console.log(`Total stones after 25 blinks: ${result}`)
+        console.log(`Total stones after 75 blinks: ${result}`)
     })
 }
 

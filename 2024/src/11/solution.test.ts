@@ -1,4 +1,4 @@
-import { firstSolution } from "./solution"
+import { firstSolution, secondSolution } from "./solution"
 
 describe("Day 11", () => {
     describe("First part", () => {
