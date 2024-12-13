@@ -9,12 +9,15 @@ export function parse(input: string): Expression {
     return {result: parseInt(result), terms}
 }
 
-export function validate(expression: Expression): boolean {
+export function validate(expression: Expression, concat: boolean = false): boolean {
     const {result, terms} = expression
 
     let paths = [terms[0]]
 
-    const ops = [add, mul]
+    const operations = [add, mul]
+
+    if(concat)
+        operations.push(concatenate)
 
     for(let t = 1; t < terms.length; t++){
         let reevaluated = []
@@ -22,8 +25,8 @@ export function validate(expression: Expression): boolean {
         const term = terms[t]
         
         for(let path of paths){
-            for(let op of ops){
-                const value = op(path, term)
+            for(let operation of operations){
+                const value = operation(path, term)
                 if(value <= result)
                     reevaluated.push(value)
             }
@@ -43,3 +46,8 @@ function mul(a: number, b: number){
     return a * b
 }
 
+function concatenate(a: number, b: number){
+    const concatenated = `${a}${b}`
+
+    return parseInt(concatenated)
+}

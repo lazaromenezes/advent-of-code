@@ -34,4 +34,16 @@ describe("Validating", () => {
 
         expect(validate(expression)).toBeTruthy()
     })
+
+    test("Is not valid without concatenation", () => {
+        const expression = {result: 156, terms: [15, 6]}
+
+        expect(validate(expression)).toBeFalsy()
+    })
+
+    test("Is valid with concatenation", () => {
+        const expression = {result: 156, terms: [15, 6]}
+
+        expect(validate(expression, true)).toBeTruthy()
+    })
 })
