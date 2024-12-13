@@ -12,25 +12,27 @@ export function parse(input: string): Expression {
 export function validate(expression: Expression): boolean {
     const {result, terms} = expression
 
+    let paths = [terms[0]]
+
     const ops = [add, mul]
 
     for(let t = 1; t < terms.length; t++){
-        const left = terms.slice(0, t)
-        const curr = terms[t]
-        const right = terms.slice(t + 1)
-
-        for(let op1 of ops){
-            for(let op2 of ops){
-                let partial = left.reduce((acc, v, i) => acc = i === 0 ? v : op1(acc, v))
-                partial = op2(partial, curr)
-                let final = right.reduce((acc, v) => acc = op1(acc, v), partial)
-
-                if(final === result)
-                    return true
+        let reevaluated = []
+        
+        const term = terms[t]
+        
+        for(let path of paths){
+            for(let op of ops){
+                const value = op(path, term)
+                if(value <= result)
+                    reevaluated.push(value)
             }
         }
+
+        paths = reevaluated
     }
-    return false
+
+    return paths.some(p => p === result)
 }
 
 function add(a: number, b: number){
@@ -40,3 +42,4 @@ function add(a: number, b: number){
 function mul(a: number, b: number){
     return a * b
 }
+
