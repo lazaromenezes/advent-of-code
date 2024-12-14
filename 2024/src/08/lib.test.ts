@@ -1,5 +1,5 @@
 import { PERIOD } from "../core"
-import { buildMap, findAntinodes, mapAntennas, Point } from "./lib"
+import { buildMap, findAntinodes, findAntinodesV2, mapAntennas, Point } from "./lib"
 
 describe("Map antennas", () => {
     test("Can map antennas", () => {
@@ -86,6 +86,74 @@ describe("Find antinodes", () => {
         const antinodes = findAntinodes(antennaMap, map)
 
         const expected = [[1, 3], [2, 0], [6, 2], [7, 6]]
+
+        expect(new Set(antinodes)).toEqual(new Set(expected))
+    })
+})
+
+describe("Find antinodes v2", () => {
+    test("Can find antinodes given a map", () => {
+        const map = new Array(10).fill(new Array(10).fill(PERIOD))
+        const antennaMap = {
+            "a": ([[0, 0], [1, 3]]) as Point[]
+        }
+
+        const antinodes = findAntinodesV2(antennaMap, map)
+
+        const expected = [[0, 0], [1, 3], [2, 6], [3, 9]]
+
+        expect(new Set(antinodes)).toEqual(new Set(expected))
+    })
+
+    test("Can find antinodes given a map with three antennas", () => {
+        const map = new Array(10).fill(new Array(10).fill(PERIOD))
+        const antennaMap = {
+            "a": ([[0, 0], [1, 3], [2, 1]]) as Point[]
+        }
+
+        const antinodes = findAntinodesV2(antennaMap, map)
+
+        const expected = [[0, 0], [1, 3], [2, 6], [3, 9], [2, 1], [0, 5], [4, 2], [6, 3], [8, 4]]
+
+        expect(new Set(antinodes)).toEqual(new Set(expected))
+    })
+
+    test("Don't create antinodes for single antenna", () => {
+        const map = new Array(10).fill(new Array(10).fill(PERIOD))
+        const antennaMap = {
+            "a": ([[3, 4]]) as Point[]
+        }
+
+        const antinodes = findAntinodesV2(antennaMap, map)
+
+        expect(antinodes).toEqual([])
+    })
+
+    test("Don't create antinodes for different antennas", () => {
+        const map = new Array(10).fill(new Array(10).fill(PERIOD))
+        
+        const antennaMap = {
+            "a": ([[0, 0], [1, 3]]) as Point[],
+            "A": []
+        }
+
+        const antinodes = findAntinodesV2(antennaMap, map)
+
+        const expected = [[0, 0], [1, 3], [2, 6], [3, 9]]
+
+        expect(new Set(antinodes)).toEqual(new Set(expected))
+    })
+
+    test("Can find antinodes given a map", () => {
+        const map = new Array(10).fill(new Array(10).fill(PERIOD))
+        const antennaMap = {
+            "a": ([[0, 0], [1, 3]]) as Point[],
+            "T": ([[0, 0], [1, 3]]) as Point[]
+        }
+
+        const antinodes = findAntinodesV2(antennaMap, map)
+
+        const expected = [[0, 0], [1, 3], [2, 6], [3, 9]]
 
         expect(new Set(antinodes)).toEqual(new Set(expected))
     })

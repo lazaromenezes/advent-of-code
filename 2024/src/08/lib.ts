@@ -50,6 +50,30 @@ export function buildMap(input: string): string[][]{
     return input.split(NEW_LINE).map(r => r.split(EMPTY))
 }
 
+export function findAntinodesV2(antennaMap: AntennaMap, map: Map) : Array<Point>{
+    const antinodes = new Array<Point>()
+    const height = map.length
+    const width = map[0].length
+
+    const inBoundary = (x: number, y: number) => x >= 0 && x < height && y >= 0 && y < width
+    const isAdded = (p: Point) => antinodes.findIndex(a => a[0] == p[0] && a[1] == p[1]) >= 0 
+
+    for(let kind in antennaMap){
+        const antennas = antennaMap[kind]
+
+        for(let i = 0; i < antennas.length; i++){
+            for(let j = i + 1; j < antennas.length; j++){
+                const calculated = calculateAntinodesV2(antennas[i], antennas[j], inBoundary)
+                for(let antinode of calculated)
+                    if(!isAdded(antinode))
+                        antinodes.push(antinode)
+            }
+        }
+    }
+
+    return antinodes
+}
+
 function calculateAntinodes(a: Point, b: Point): [Point, Point] {
     const [xa, ya] = a
     const [xb, yb] = b
@@ -61,4 +85,30 @@ function calculateAntinodes(a: Point, b: Point): [Point, Point] {
     const antiB = [xb + dx, yb + dy] as Point
 
     return [antiA, antiB]
+}
+
+function calculateAntinodesV2(a: Point, b: Point, inBoundary: Function): Point[] {
+    const antinodes = []
+    
+    const [xa, ya] = a
+    const [xb, yb] = b
+
+    const dx = xb - xa
+    const dy = yb - ya
+
+    //let i = 1
+
+    do{
+        if(inBoundary(...a))
+            antinodes.push(a)
+
+        if(inBoundary(...b))
+            antinodes.push(b)
+
+        a = [a[0] - dx, a[1] - dy] as Point
+        b = [b[0] + dx, b[1] + dy] as Point
+
+    }while(inBoundary(...a) || inBoundary(...b))
+
+    return antinodes
 }
