@@ -43,6 +43,6 @@ Training Typescript this season
 5. [Day 5: Print Queue](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/05)
 6. [Day 6: Guard Gallivant](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/06)
 7. [Day 7: Bridge Repair](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/07)
-8. To Be Implemented
+8. [Day 8: Ressonant Collinearity](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/08)
 9. [Day 9: Disk Fragmenter](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/09)
 11. [Day 11: Plutonian Pebbles](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/11)
