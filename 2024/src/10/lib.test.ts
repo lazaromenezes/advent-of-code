@@ -1,4 +1,4 @@
-import { buildMap, mapReachable, mapTrailheads } from "./lib"
+import { buildMap, mapReachable, mapTrailheads, rating, score } from "./lib"
 
 test("map trailheads gives all start indexes", () => {
     const input = `10..9..\n2...8..\n3...7..\n4567654\n...8..3\n...9..2\n.....01`
@@ -35,11 +35,21 @@ test("map map reachable gives all reachable positions for multiple outcomes", ()
     expect(reachable).toEqual([[0, 4], [5, 3]])
 })
 
-test("more examples", () => {
+test("score counts distinct forms", () => {
     const input = `..90..9\n...1.98\n...2..7\n6543456\n765.987\n876....\n987....`
     const map = buildMap(input)
 
     const reachable = mapReachable([0, 3], map)
 
-    expect(new Set(reachable)).toEqual(new Set([[0, 6], [1, 5], [6, 0], [4, 4]]))
+    expect(score(reachable)).toEqual(4)
+})
+
+test("rating counts all forms", () => {
+    const input = `012345\n123456\n234567\n345678\n4.6789\n56789.`
+
+    const map = buildMap(input)
+
+    const reachable = mapReachable([0, 0], map)
+
+    expect(rating(reachable)).toEqual(227)
 })

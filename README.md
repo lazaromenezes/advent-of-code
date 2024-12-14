@@ -45,4 +45,5 @@ Training Typescript this season
 7. [Day 7: Bridge Repair](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/07)
 8. [Day 8: Ressonant Collinearity](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/08)
 9. [Day 9: Disk Fragmenter](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/09)
+10. [Day 10: Hoof It](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/10)
 11. [Day 11: Plutonian Pebbles](https://github.com/lazaromenezes/advent-of-code/tree/main/2024/src/11)

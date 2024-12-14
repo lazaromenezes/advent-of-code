@@ -40,14 +40,22 @@ export function mapReachable(position: Point, map: number[][], lastLevel: number
         }
     })
 
-    return next.reduce((res, point) => {
-        if(res.findIndex((p) => p[0] === point[0] && p[1] === point[1]) < 0)
-            res.push(point)
-
-        return res
-    }, new Array<Point>())
+    return next
 }
 
 function inMap(row: number, col: number, width: number, height: number){
     return row >= 0 && row < height && col >= 0 && col < width
+}
+
+export function score(alternatives: Array<Point>): number {
+    return alternatives.reduce((res, point) => {
+        if(res.findIndex((p) => p[0] === point[0] && p[1] === point[1]) < 0)
+            res.push(point)
+
+        return res
+    }, new Array<Point>()).length
+}
+
+export function rating(alternatives: Array<Point>){
+    return alternatives.length
 }
